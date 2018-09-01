@@ -39,6 +39,7 @@ public class CommonBugDetector {
                 case('d'): return createWorldStateList(List.of('e'));
                 case('e'): return createWorldStateList(List.of('g'));
                 case('x'): return createWorldStateList(List.of('c'));
+                case('g'): return createWorldStateList(List.of('g'));
                 default: return null;
             }
         }

@@ -8,8 +8,9 @@ import edu.princeton.cs.introcs.In;
 public class Word implements WorldState {
     private static Set<String> words;
     private static final String WORDFILE = "input/words10000.txt";
-    private final String word;
+    public final String word;
     private final String goal;
+    private int buffer;
 
     /**
      * Reads the wordfile specified by the wordfile variable.
@@ -42,6 +43,7 @@ public class Word implements WorldState {
 
         word = w;
         goal = g;
+        buffer = editDistance(this.word, goal);
     }
 
     /**
@@ -84,7 +86,7 @@ public class Word implements WorldState {
 
     @Override
     public int estimatedDistanceToGoal() {
-        return editDistance(this.word, goal);
+        return buffer;
     }
 
     @Override
@@ -115,4 +117,5 @@ public class Word implements WorldState {
         result = 31 * result + (goal != null ? goal.hashCode() : 0);
         return result;
     }
+
 }

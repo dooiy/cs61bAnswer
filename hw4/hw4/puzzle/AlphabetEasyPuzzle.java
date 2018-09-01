@@ -3,10 +3,13 @@ package hw4.puzzle;
 import java.util.Set;
 import java.util.HashSet;
 
+
+
 /** Ultra simple puzzle useful for debugging. The puzzle has a state equal to a single
   * alphabetical lower case character. The goal is 'z'. Neighbors are the characters
   * immediately to the left and right of the character in the alphabet. */
 public class AlphabetEasyPuzzle implements WorldState {
+
     char character;
 
     /**
@@ -58,4 +61,5 @@ public class AlphabetEasyPuzzle implements WorldState {
     public int hashCode() {
         return character;
     }
+
 }
