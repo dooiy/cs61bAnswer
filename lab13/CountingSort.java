@@ -74,15 +74,47 @@ public class CountingSort {
         }
 
         if (min < 0) {
-            int[] arrPositive = new int[arr.length];
-            for (int i = 0; i < arr.length; i++) {
-                arrPositive[i] = arr[i] - min;
+
+
+
+
+            int max = Integer.MIN_VALUE;
+            for (int i : arr) {
+                max = max > i ? max : i;
             }
-            int[] sorted = naiveCountingSort(arrPositive);
-            for (int i = 0; i < sorted.length; i++) {
-                sorted[i] = sorted[i] + min;
+
+            // gather all the counts for each value
+            int[] counts = new int[max + 1 - min];
+            for (int i : arr) {
+                counts[i - min]++;
             }
-            return sorted;
+
+
+            int[] starts = new int[max + 1 - min];
+            int pos = 0;
+            for (int i = 0; i < starts.length; i += 1) {
+                starts[i] = pos;
+                pos += counts[i];
+            }
+
+            int[] sorted2 = new int[arr.length];
+            for (int i = 0; i < arr.length; i += 1) {
+                int item = arr[i];
+                int place = starts[item - min];
+                sorted2[place] = item;
+                starts[item - min] += 1;
+            }
+
+            // return the sorted array
+            return sorted2;
+
+
+
+
+
+
+
+
 
         } else {
             return naiveCountingSort(arr);
