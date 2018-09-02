@@ -16,19 +16,18 @@ public class RadixSort {
      * @return String[] the sorted array
      */
     public static String[] sort(String[] asciis) {
-        // TODO: Implement LSD Sort
         //find the max length of the string
-        int max_length = 0;
+        int maxlength = 0;
         for (String s : asciis) {
-            max_length = s.length() > max_length ? s.length() : max_length;
+            maxlength = s.length() > maxlength ? s.length() : maxlength;
         }
 
         String[] sorted = new String[asciis.length];
-        for (int i = 0; i < asciis.length; i++){
+        for (int i = 0; i < asciis.length; i++) {
             sorted[i] = asciis[i];
         }
 
-        for (int i = 0; i < max_length; i++) {
+        for (int i = 0; i < maxlength; i++) {
             sortHelperLSD(sorted, i);
         }
 
@@ -46,22 +45,22 @@ public class RadixSort {
     private static void sortHelperLSD(String[] asciis, int index) {
         // Optional LSD helper method for required LSD radix sort
         int[] counts = new int[256];
-        int max_length = 0;
+        int maxlength = 0;
         for (String s : asciis) {
-            max_length = s.length() > max_length ? s.length() : max_length;
+            maxlength = s.length() > maxlength ? s.length() : maxlength;
         }
         for (String s : asciis) {
-            if(max_length - index - 1 > s.length() - 1){
+            if (maxlength - index - 1 > s.length() - 1) {
                 counts[0]++;
             } else {
-                counts[(int) s.charAt(max_length - index - 1)]++;
+                counts[(int) s.charAt(maxlength - index - 1)]++;
             }
 
         }
 
         int[] started = new int[256];
         int pos = 0;
-        for (int i = 0; i < counts.length; i++){
+        for (int i = 0; i < counts.length; i++) {
             started[i] = pos;
             pos = pos + counts[i];
         }
@@ -69,14 +68,14 @@ public class RadixSort {
         String[] sorted = new String[asciis.length];
         for (String s : asciis) {
             String item = s;
-            if(max_length - index - 1 > s.length() - 1){
+            if (maxlength - index - 1 > s.length() - 1) {
                 int place = started[0];
                 sorted[place] = item;
                 started[0]++;
             } else {
-                int place = started[(int) s.charAt(max_length - index - 1)];
+                int place = started[(int) s.charAt(maxlength - index - 1)];
                 sorted[place] = item;
-                started[(int) s.charAt(max_length - index - 1)]++;
+                started[(int) s.charAt(maxlength - index - 1)]++;
             }
 
 
@@ -102,7 +101,7 @@ public class RadixSort {
         return;
     }
 
-    public static void main (String[] args){
+    public static void main(String[] args) {
         String[] a = new String[5];
         a[0] = "bbc";
         a[1] = "bcc";
