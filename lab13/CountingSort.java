@@ -83,23 +83,16 @@ public class CountingSort {
             }
 
 
-            int[] starts = new int[max + 1 - min];
-            int pos = 0;
-            for (int i = 0; i < starts.length; i += 1) {
-                starts[i] = pos;
-                pos += counts[i];
-            }
-
-            int[] sorted2 = new int[arr.length];
-            for (int i = 0; i < arr.length; i += 1) {
-                int item = arr[i];
-                int place = starts[item - min];
-                sorted2[place] = item;
-                starts[item - min] += 1;
+            int[] sorted = new int[arr.length];
+            int k = 0;
+            for (int i = 0; i < counts.length; i += 1) {
+                for (int j = 0; j < counts[i]; j += 1, k += 1) {
+                    sorted[k] = i + min;
+                }
             }
 
             // return the sorted array
-            return sorted2;
+            return sorted;
 
 
 
