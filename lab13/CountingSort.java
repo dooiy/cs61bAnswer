@@ -69,20 +69,13 @@ public class CountingSort {
         // TODO make counting sort work with arrays containing negative numbers.
         //Find Min
         int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
         for (int i : arr) {
             min = i < min ? i : min;
+            max = max > i ? max : i;
         }
 
         if (min < 0) {
-
-
-
-
-            int max = Integer.MIN_VALUE;
-            for (int i : arr) {
-                max = max > i ? max : i;
-            }
-
             // gather all the counts for each value
             int[] counts = new int[max + 1 - min];
             for (int i : arr) {
